@@ -1,10 +1,12 @@
 package com.example.loginui
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.loginui.databinding.ActivityMainBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,14 +37,14 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.signInBtn.setOnClickListener {
-            if (binding.usr.text == null){
-
+            if (binding.usr.text.toString() == ""){
+                AlertBox("please enter username")
             }
-            else if(binding.password.text==null){
-
+            else if(binding.password.text.toString()==""){
+                AlertBox("please enter password")
             }
             else if(binding.password.text.toString() != "1234"){
-
+                AlertBox("please enter correct password")
             }
             else{
                 val editor = spref.edit()
@@ -53,5 +55,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun AlertBox(msg:String){
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Alert")
+            .setMessage(msg)
+            .setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+
+            })
+            .show()
     }
 }
