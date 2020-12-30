@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
 
         spref = getSharedPreferences("userDetails",MODE_PRIVATE)
-        val intent= Intent(this,Welcome::class.java)
+        val intent= Intent(this,WelcomeActivity::class.java)
 
         if(spref.contains("userName")){
             startActivity(intent)
